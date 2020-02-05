@@ -15,7 +15,7 @@ import (
 )
 
 //go:generate go run github.com/semrush/zenrpc/zenrpc
-//go:generate go run go.pyspa.org/brbundle/cmd/brbundle embedded dist
+//go:generate go run go.pyspa.org/brbundle/cmd/brbundle embedded -f dist
 
 // APIService is a JSON RPC server interface
 type APIService struct {

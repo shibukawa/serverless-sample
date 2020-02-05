@@ -8,8 +8,6 @@ COPY src/ ./src
 RUN npm run build
 
 FROM golang:1.13-buster as gobuilder
-RUN apt-get update
-RUN apt-get install -y brotli
 WORKDIR /go/src/app
 COPY go.mod go.sum ./
 RUN go mod download
