@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"math/big"
 	"net/http"
+	"os"
 
 	"github.com/go-chi/chi"
 	"github.com/semrush/zenrpc"
@@ -39,6 +41,12 @@ func main() {
 	r.NotFound(brchi.Mount(brbundle.WebOption{
 		SPAFallback: "index.html",
 	}))
-	log.Println("Open Server at :8888")
-	log.Fatal(http.ListenAndServe("127.0.0.1:8888", r))
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	host := os.Getenv("HOST")
+	fmt.Printf("Open Server at %s:%s\n", host, port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf("%s:%s", host, port), r))
 }
