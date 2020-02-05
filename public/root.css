@@ -1,0 +1,17 @@
+ 
+body {
+    font-family: Roboto, sans-serif;
+    margin: 0px;
+    transition: opacity ease-in 0.2s;
+    height: 100vh;
+}
+
+.unresolved {
+    opacity: 0;
+}
+  
+.main-content {
+    min-height: 300px;
+    padding: 48px 18px 0 18px;
+}
+  

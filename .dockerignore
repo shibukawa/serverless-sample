@@ -4,6 +4,6 @@ serverless-sample.exe
 serverless-sample
 embedded-bundle.go
 main_zenrpc.go
-.idea
-.vscode
-Dockerfile
+tests
+.git
+

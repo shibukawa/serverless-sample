@@ -1,18 +1,31 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div slot="appContent">
+    <mwc-top-app-bar>
+      <mwc-icon-button
+        slot="navigationIcon"
+        icon="menu"
+        v-on:click="toggleDrawer"
+      ></mwc-icon-button>
+      <div slot="title">Home</div>
+    </mwc-top-app-bar>
+    <div class="main-content">
+      <img alt="Vue logo" src="../assets/logo.png" />
+    </div>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 
-export default {
-  name: "home",
-  components: {
-    HelloWorld
+import "@material/mwc-top-app-bar";
+import "@material/mwc-icon-button";
+import { Drawer } from "@material/mwc-drawer";
+
+@Component
+export default class HomeComponent extends Vue {
+  toggleDrawer(e: Event) {
+    const drawer = this.$parent.$el as Drawer;
+    drawer.open = !drawer.open;
   }
-};
+}
 </script>
