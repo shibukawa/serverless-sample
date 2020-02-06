@@ -1,5 +1,5 @@
 <template>
-  <mwc-drawer hasHeader type="modal">
+  <mwc-drawer hasHeader type="modal" :open="openDrawer">
     <span slot="title">Drawer Title</span>
     <span slot="subtitle">subtitle</span>
     <div class="drawer-content">
@@ -22,14 +22,19 @@
 import { Component, Vue } from "vue-property-decorator";
 import "@material/mwc-icon-button";
 import "@material/mwc-drawer";
-import { Drawer } from "@material/mwc-drawer";
 
 @Component
 export default class AppComponent extends Vue {
+  openDrawer: boolean = false;
+
+  mounted() {
+    this.$router.afterEach(() => {
+      this.openDrawer = false;
+    });
+  }
+
   selectPage(path: string) {
     if (path !== this.$router.currentRoute.path) {
-      const drawer = this.$el as Drawer;
-      drawer.open = false;
       this.$router.push(path);
     }
     return false;

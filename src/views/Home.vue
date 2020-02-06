@@ -19,13 +19,13 @@ import { Component, Vue } from "vue-property-decorator";
 
 import "@material/mwc-top-app-bar";
 import "@material/mwc-icon-button";
-import { Drawer } from "@material/mwc-drawer";
+import AppComponent from '../App.vue';
 
 @Component
 export default class HomeComponent extends Vue {
   toggleDrawer(e: Event) {
-    const drawer = this.$parent.$el as Drawer;
-    drawer.open = !drawer.open;
+    const parent = this.$parent as AppComponent;
+    parent.openDrawer = !parent.openDrawer;
   }
 }
 </script>

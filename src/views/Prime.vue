@@ -20,7 +20,7 @@
         <mwc-button @click="check()">Is it Prime Number?</mwc-button>
       </div>
     </div>
-    <mwc-dialog ref="dialog">
+    <mwc-dialog :open="dialogOpen" @closing="closingDialog">
       <div>{{ this.result }}</div>
       <mwc-button slot="primaryAction" dialogAction="discard">
         OK
@@ -37,13 +37,17 @@ import "@material/mwc-icon-button";
 import "@material/mwc-button";
 import "@material/mwc-dialog";
 import "@material/mwc-textfield";
-import { Drawer } from "@material/mwc-drawer";
-import { Dialog } from "@material/mwc-dialog";
+import AppComponent from '../App.vue';
 
 @Component
 export default class AboutPage extends Vue {
   result: string = "";
   num: string = "0";
+  dialogOpen: boolean = false;
+
+  closingDialog() {
+    this.dialogOpen = false;
+  }
 
   onchange(value: string) {
     this.num = value;
@@ -63,7 +67,6 @@ export default class AboutPage extends Vue {
         accept: "application/json"
       }
     });
-    const dialog = this.$refs.dialog as Dialog;
     if (res.ok) {
       try {
         const result = await res.json() as any;
@@ -78,12 +81,12 @@ export default class AboutPage extends Vue {
     } else {
       this.result = "server access error";
     }
-    dialog.open = true;
+    this.dialogOpen = true;
   }
 
   toggleDrawer(e: Event) {
-    const drawer = this.$parent.$el as Drawer;
-    drawer.open = !drawer.open;
+    const parent = this.$parent as AppComponent;
+    parent.openDrawer = !parent.openDrawer;
   }
 }
 </script>
