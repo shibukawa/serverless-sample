@@ -4,9 +4,9 @@
     <span slot="subtitle">subtitle</span>
     <div class="drawer-content">
       <p>Drawer content</p>
-      <p><a v-on:click="selectPage('/')">Home</a></p>
-      <p><a v-on:click="selectPage('/prime')">Prime</a></p>
-      <p><a v-on:click="selectPage('/about')">About</a></p>
+      <p><a @click="selectPage('/')">Home</a></p>
+      <p><a @click="selectPage('/prime')">Prime</a></p>
+      <p><a @click="selectPage('/about')">About</a></p>
     </div>
     <router-view />
   </mwc-drawer>
